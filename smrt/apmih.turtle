@@ -1,0 +1,48 @@
+
+
+m:ApMihic a :Org ;
+  :label "Apartmani Mihiæ"@hr.
+
+m:MihicHouse a :Location ;
+  :label "Kuæa obitelji Mihiæ"@hr.
+
+m:SrimaBeach a :Location ;
+  :proto :Beach.
+
+m:SrimaKonzum a :Location ;
+  :proto :Supermarket .
+
+m:Grill a :Facility;
+  :located m:MihicHouse.
+  
+m:Parking a :Facility;
+  :located m:MihicHouse.
+
+
+m:Prvic a :AccomUnit ;
+  :located m:MihicHouse ;
+  :feature :Kitchen, :AC, :Balcony, :SatTV;
+  :nominalCap 2;
+  :extraCap 2;
+  :maxCap 6 .
+
+m:Tijat a :AccomUnit ;
+  :located m:MihicHouse ;
+  :feature 
+    [ a :Kitchen ],
+    [ a :AC],
+    [ a :Balcony ],
+    [ a :SatTV ];
+  :nominalCap 2;
+  :extraCap 2;
+  :maxCap 6 .
+
+
+m:Zlarin a :AccomUnit ;
+  :located m:MihicHouse ;
+  :feature :Kitchen, :Balcony, :SatTV;
+  :nominalCap 2;
+  :extraCap 1;
+  :maxCap 5 .
+
+
