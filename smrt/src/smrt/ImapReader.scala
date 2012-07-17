@@ -16,7 +16,7 @@ object ImapReader extends App {
     try {
       val session = Session.getDefaultInstance(props, null);
       val store = session.getStore("imaps");
-      store.connect("imap.gmail.com", "hrvoje@apartman-tonio.com", "dnjp0vu");
+      store.connect("imap.gmail.com", "hrvoje@apartman-tonio.com", args(0));
       val folder = store.getFolder("INBOX")
       folder.open(Folder.READ_ONLY)
       val messages = folder.getMessages
