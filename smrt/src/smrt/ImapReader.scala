@@ -1,6 +1,5 @@
 package smrt
 
-import java.util._
 import javax.mail._
 import javax.mail.event._
 import javax.mail.internet._
@@ -17,7 +16,7 @@ object ImapReader extends App {
       val session = Session.getDefaultInstance(props, null);
       val store = session.getStore("imaps");
       store.connect("imap.gmail.com", "hrvoje@apartman-tonio.com", args(0));
-      val folder = store.getFolder("INBOX")
+      val folder = store.getFolder("testmail")
       folder.open(Folder.READ_ONLY)
       val messages = folder.getMessages
       val mails = ( messages take 39 ) flatMap { m =>
@@ -36,11 +35,11 @@ object ImapReader extends App {
             }
           }
           else mail.body = c.toString
-          println( mail )
           Some( mail )
         }
         else None
       }
+      println( mails.map(_.scalaCode).mkString("List(\n", ",\n", "\n)") )
     }
     catch {
       case e => println(e)
@@ -48,10 +47,8 @@ object ImapReader extends App {
   }
 }
 
-class Mail {
-  var from: String = _
-  var subject: String = _
-  var body: String = _
+case class Mail( var from: String = "", var subject: String = "", var body: String = "" ) {
   
   override def toString = from + " [" + subject + "]\n" + body
+  def scalaCode = "Mail( from=\"" + from + "\", subject=\"" + subject + "\", body=\"\"\"" + body.trim + "\"\"\")" 
 }
